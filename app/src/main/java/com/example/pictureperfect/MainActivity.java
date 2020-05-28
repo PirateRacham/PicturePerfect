@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity implements IMainActivityView
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
-            colourInImageFinderPresenter.FindColour(imageBitmap);
+            UpdateColours(colourInImageFinderPresenter.FindColour(imageBitmap));
         }
     }
     @Override
-    public void UpdateColours(ArrayList<Integer> ColourAsInt) {
+    public void UpdateColours(Integer[] ColourAsInt) {
         for (int i=0; i<5; i++){
-            texts.get(i).setText(ColourAsInt.get(i));
-            colours.get(i).setBackgroundColor(ColourAsInt.get(i));
+            texts.get(i).setText(ColourAsInt[i]);
+            colours.get(i).setBackgroundColor(ColourAsInt[i]);
         }
     }
 }

@@ -9,21 +9,18 @@ public class ColourInImageFinderPresenter implements IColourInImageFinderPresent
 
     private IMainActivityView view;
     private FindColourInImageManager manager;
-    public ColourInImageFinderPresenter(IMainActivityView view){
+
+    public ColourInImageFinderPresenter(IMainActivityView view) {
         this.view = view;
         manager = new FindColourInImageManager(8);
     }
+
     @Override
-    public void FindColour(Bitmap imageBitmap) {
-        try {
-            manager.FindColours(imageBitmap);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public Integer[] FindColour(Bitmap imageBitmap) {
+        return manager.FindDominantColours(imageBitmap);
     }
-    public void ImageAnalyzed(ArrayList<Integer> coloursInInt){
-        view.UpdateColours(coloursInInt);
-    }
+
+//    public void ImageAnalyzed(ArrayList<Integer> coloursInInt) {
+//        view.UpdateColours(coloursInInt);
+//    }
 }

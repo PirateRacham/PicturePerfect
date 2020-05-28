@@ -8,21 +8,22 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.Callable;
 
-public class ColourFinderCallable implements Callable {
-    private Bitmap Image;
+public class ColourFinderCallable implements Callable<TreeMap<Integer, Integer>> {
+    private Bitmap _image;
 
     ColourFinderCallable(Bitmap image){
-        Image = image;
+        _image = image;
     }
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
-    public Map<Integer, Integer> call() throws Exception {
-        Map<Integer, Integer> colours = new TreeMap<>();
-        int height = Image.getHeight();
-        int width = Image.getWidth();
+    public TreeMap<Integer, Integer> call() throws Exception {
+        TreeMap<Integer, Integer> colours = new TreeMap<>();
+        int height = _image.getHeight();
+        int width = _image.getWidth();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++){
-                int colour = Image.getColor(x,y).toArgb();
+                int colour = _image.getColor(x,y).toArgb();
+                
                 if(colours.containsKey(colour)){
                     colours.put(colour, colours.get(colour) + 1);
                 }
